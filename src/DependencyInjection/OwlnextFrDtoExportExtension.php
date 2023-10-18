@@ -18,11 +18,5 @@ class OwlnextFrDtoExportExtension extends Extension
         );
 
         $loader->load('services.yaml');
-
-//        $container->loadFromExtension('twig', [
-//            'paths' => [
-//                '%kernel.project_dir%/vendor/owlnext-fr/dto-export/templates' => 'owlnext_fr.dto_export',
-//            ],
-//        ]);
     }
 }

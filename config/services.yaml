@@ -6,12 +6,14 @@ services:
   # languages helper
   owlnext_fr.dto_exporter.service.language.dart:
     class: OwlnextFr\DtoExport\Service\languages\dart\DartLanguageUtils
-    tags:
-      - { name: twig.extension }
   owlnext_fr.dto_exporter.service.language.typescript:
     class: OwlnextFr\DtoExport\Service\languages\dart\TypeScriptLanguageUtils
-    tags:
-      - { name: twig.extension }
+
+  # twig extensions
+    owlnext_fr.dto_exporter.twig.extension.app_extension:
+        class: OwlnextFr\DtoExport\Twig\AppExtension
+        tags:
+        - { name: twig.extension }
 
   # commands
   owlnext_fr.dto_exporter.command.dto_export:
