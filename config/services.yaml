@@ -19,5 +19,7 @@ services:
   # commands
   owlnext_fr.dto_exporter.command.dto_export:
     class: OwlnextFr\DtoExport\Command\DTOExportCommand
+    arguments:
+      - '@owlnext_fr.dto_exporter.service.dto_exporter'
     tags:
       - { name: 'console.command', command: 'dto:export' }
