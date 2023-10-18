@@ -13,8 +13,8 @@
     "version": "0.0.4",
     "require": {
         "php": ">= 8.0",
-        "symfony/twig-bundle": "^6.3",
-        "symfony/console": "^6.3"
+        "symfony/twig-bundle": "^6.1",
+        "symfony/console": "^6.1"
     },
     "autoload": {
         "psr-4": {
