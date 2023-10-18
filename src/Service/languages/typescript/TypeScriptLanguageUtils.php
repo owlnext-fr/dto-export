@@ -35,7 +35,9 @@ class TypeScriptLanguageUtils implements RuntimeExtensionInterface
      */
     public static function filterType(string $type, array $fieldMetadata = []): string
     {
-        if ('string' === $type) {
+        if(true === is_object($type) && true === str_starts_with($type, 'App\\Entity')) {
+            $type = 'string';
+        } elseif ('string' === $type) {
             $type = 'string';
         } elseif ('bool' === $type) {
             $type = 'boolean';
