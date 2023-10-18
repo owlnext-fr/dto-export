@@ -29,14 +29,12 @@ class DTOExporter
     /** @var Environment $renderer Twig renderer. */
     private Environment $renderer;
 
-    private string $templateRootDirectory;
-
     /** @var string[] List of languages that requires a project name. */
     public const REQUIRES_PROJECT_NAME = [
         'dart'
     ];
 
-    public function __construct(#[TaggedIterator('app.exportable_dto')] $iterator, Environment $renderer, KernelInterface $kernel)
+    public function __construct(iterable $iterator, Environment $renderer)
     {
         $this->storage = [];
 
@@ -45,7 +43,6 @@ class DTOExporter
         }
 
         $this->renderer = $renderer;
-        $this->templateRootDirectory = sprintf("%s/vendor/owlnext-fr/dto-export/templates", $kernel->getProjectDir());
     }
 
     #region dispatcher

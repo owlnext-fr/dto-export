@@ -4,13 +4,13 @@
     "type": "library",
     "minimum-stability": "stable",
     "license": "MIT",
+    "version": "1.0.0",
     "authors": [
         {
             "name": "Adrien Gras",
             "email": "agr@owlnext.fr"
         }
     ],
-    "version": "0.0.5",
     "require": {
         "php": ">= 8.0",
         "symfony/twig-bundle": "^6.1",

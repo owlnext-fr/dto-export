@@ -5,7 +5,6 @@ services:
     arguments:
       - !tagged_iterator { tag: app.exportable_dto }
       - '@twig'
-      - '@kernel'
 
   # languages helper
   owlnext_fr.dto_exporter.service.language.dart:
