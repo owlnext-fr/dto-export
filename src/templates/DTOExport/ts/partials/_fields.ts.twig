@@ -1,0 +1,11 @@
+{% if metadata.dto_type == 'input' %}
+{% for _, field in metadata.fields %}
+        {{ field.name }}: {{ field.type|ts_filter_type(field)|raw }}{% if field.is_nullable == true %}|null{% endif %}
+
+{% endfor %}
+{% else %}
+{% for _, field in metadata.fields %}
+        {{ field.name }} : {{ field.type|ts_filter_type(field)|raw }}|null
+
+{% endfor %}
+{% endif %}

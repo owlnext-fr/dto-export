@@ -1,0 +1,29 @@
+Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+
+    {% for _, field in metadata.fields %}
+    {% if field.is_nullable == true %}
+    {% if field.type == 'array' %}
+    data['{{ field.name }}'] = {{ field.name }} != null ? {{ field.name }} : null;
+    {% elseif (field.type == 'DateTime' or field.type == 'DateTimeImmutable' or field.type == 'DateTimeInterface') %}
+    data['{{ field.name }}'] = {{ field.name }} != null ? {{ field.name }}?.toIso8601String() : null;
+    {% elseif field.is_built_in == false %}
+    data['{{ field.name }}'] = {{ field.name }} != null ? {{ field.name }}?.toJson() : null;
+    {% else %}
+    data['{{ field.name }}'] = {{ field.name }} != null ? {{ field.name }} : null;
+    {% endif %}
+    {% else %}
+    {% if field.type == 'array' %}
+    data['{{ field.name }}'] = {{ field.name }};
+    {% elseif (field.type == 'DateTime' or field.type == 'DateTimeImmutable' or field.type == 'DateTimeInterface') %}
+    data['{{ field.name }}'] = {{ field.name }}?.toIso8601String();
+    {% elseif field.is_built_in == false %}
+    data['{{ field.name }}'] = {{ field.name }}?.toJson();
+    {% else %}
+    data['{{ field.name }}'] = {{ field.name }};
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+
+    return data;
+}

@@ -1,0 +1,14 @@
+{% include('DTOExport/dart/partials/_imports.dart.twig')|raw %}
+
+class {{ metadata.object_name }} {
+{% include('DTOExport/dart/partials/_fields.dart.twig')|raw %}
+
+{% include('DTOExport/dart/partials/_constructor.dart.twig')|raw %}
+
+{% include('DTOExport/dart/partials/_from_json.dart.twig')|raw %}
+
+{% include('DTOExport/dart/partials/_to_json.dart.twig')|raw %}
+
+{% include('DTOExport/dart/partials/_generate_empty.dart.twig')|raw %}
+
+}

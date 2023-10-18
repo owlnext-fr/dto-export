@@ -1,0 +1,9 @@
+{% if metadata.fields|length == 0 %}
+{{ metadata.object_name }}();
+{% else %}
+{{ metadata.object_name }}({
+{% for _, field in metadata.fields %}
+{% if field.is_nullable == false %}required{% endif %} this.{{ field.name }},
+{% endfor %}
+});
+{% endif %}

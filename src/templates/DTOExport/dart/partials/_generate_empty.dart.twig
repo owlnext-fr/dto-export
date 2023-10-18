@@ -1,0 +1,13 @@
+{% if metadata.fields|length > 0 %}
+{{ metadata.object_name }}.initEmpty() :
+{% set i = 0 %}
+{% for _, field in metadata.fields %}
+{% if field.is_built_in == false and field.type != 'DateTime' and field.type != 'DateTimeImmutable' and field.type != 'DateTimeInterface' %}
+{{ field.name }} = {{ field.type|dart_to_object_basename|raw }}.initEmpty(){% if i < (metadata.fields|length -1) %},{% else %};{% endif %}
+{% else %}
+{{ field.name }} = generateEmpty{{ field.type|dart_filter_type(field)|ucfirst|raw }}(){% if i < (metadata.fields|length -1) %}, {% else %};{% endif %}
+{% endif %}
+
+{% set i = i + 1 %}
+{% endfor %}
+{% endif %}

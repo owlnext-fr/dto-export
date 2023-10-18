@@ -1,0 +1,23 @@
+{
+    "name": "owlnext-fr/dto-export",
+    "description": "Symfony + API Platform vendor for exporting API DTOs into other languages for front-end easy integration.",
+    "type": "library",
+    "require": {
+        "php": ">= 8.0",
+        "symfony/twig-bundle": "^6.3",
+        "symfony/console": "^6.3"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "OwlnextFr\\DtoExport\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Adrien Gras",
+            "email": "agr@owlnext.fr"
+        }
+    ],
+    "minimum-stability": "stable"
+}

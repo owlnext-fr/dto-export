@@ -1,0 +1,7 @@
+import 'package:{{ options.project_name }}/DTO/GlobalObjects/EmptyTypes/empty_types.dart';
+import 'package:{{ options.project_name }}/utils/common.dart';
+
+{% for _, import in metadata.imports %}
+import 'package:{{ options.project_name }}/{{ import|dart_to_dto_path }}.dart';
+
+{% endfor %}

@@ -1,0 +1,4 @@
+{% for _, import in metadata.imports %}
+import  {{ import|ts_to_object_basename }} from '{{ import|ts_to_dto_path }}';
+
+{% endfor %}

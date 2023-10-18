@@ -1,0 +1,53 @@
+{{ metadata.object_name }}.fromJson(dynamic input) :
+{% set i = 0 %}
+{% for _, field in metadata.fields %}
+{% if field.type == 'array' %}
+{{ field.name }} = generateEmpty{{ field.type|dart_filter_type(field)|ucfirst|raw }}(){% if i < (metadata.fields|length -1) %}, {% else %}{% endif %}
+{% elseif (field.type == 'DateTime' or field.type == 'DateTimeImmutable' or field.type == 'DateTimeInterface') %}
+
+{% if field.is_nullable == true %}
+{{ field.name }} = input['{{ field.name }}'] != null ? formatISOToDateTime(input['{{ field.name }}']) : null{% if i < (metadata.fields|length -1) %},{% else %}{% endif %}
+{% else %}
+{{ field.name }} = formatISOToDateTime(input['{{ field.name }}']){% if i < (metadata.fields|length -1) %},{% else %}{% endif %}
+{% endif %}
+
+{% elseif field.is_built_in == false %}
+
+{% if field.is_nullable == true %}
+{{ field.name }} = input['{{ field.name }}'] != null ? {{ field.type|dart_to_object_basename|raw }}.fromJson(input['{{ field.name }}']) : null{% if i < (metadata.fields|length -1) %},{% else %}{% endif %}
+{% else %}
+{{ field.name }} = {{ field.type|dart_to_object_basename|raw }}.fromJson(input['{{ field.name }}']) {% if i < (metadata.fields|length -1) %},{% else %}{% endif %}
+{% endif %}
+
+{% else %}
+
+{{ field.name }} = input['{{ field.name }}']{% if i < (metadata.fields|length -1) %}, {% else %}{% endif %}
+
+{% endif %}
+{% set i = i + 1 %}
+{% endfor %}
+
+{
+{% for _, field in metadata.fields %}
+    {% if field.type == 'array' %}
+
+    {% if field.list_of in ['string', 'int', 'double', 'float', 'bool', 'mixed'] %}
+    List<{{ field.list_of|dart_filter_type(field)|raw  }}>? finalList{{ field.name }} = [];
+    if (input['{{ field.name }}'] != null) {
+    for (var item in input['{{ field.name }}']) {
+    finalList{{ field.name }}.add(item);
+    }
+    }
+    {% else %}
+    List<{{ field.list_of|dart_to_object_basename }}>? finalList{{ field.name }} = [];
+    if (input['{{ field.name }}'] != null) {
+    for (var item in input['{{ field.name }}']) {
+    finalList{{ field.name }}.add({{ field.list_of|dart_to_object_basename }}.fromJson(item));
+    }
+    }
+    {% endif %}
+    {{ field.name }} = finalList{{ field.name }};
+
+    {% endif %}
+{% endfor %}
+}

@@ -1,0 +1,3 @@
+{% for _, field in metadata.fields %}
+{{ field.type|dart_filter_type(field)|raw }}{% if field.is_nullable == true %}?{% endif%} {{ field.name }};
+{% endfor %}
