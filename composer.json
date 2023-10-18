@@ -3,7 +3,7 @@
     "description": "Symfony + API Platform vendor for exporting API DTOs into other languages for front-end easy integration.",
     "type": "library",
     "minimum-stability": "dev",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "require": {
         "php": ">= 8.0",
         "symfony/twig-bundle": "^6.3",
