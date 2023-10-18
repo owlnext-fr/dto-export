@@ -2,7 +2,7 @@
 
 namespace OwlnextFr\DtoExport\Command;
 
-use OwlnextFr\DtoExport\DTOExport\DTOExporter;
+use OwlnextFr\DtoExport\Service\DTOExporter;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -35,13 +35,16 @@ class DTOExportCommand extends Command
     /** @var SymfonyStyle|null $io Style utility to format command output. */
     private SymfonyStyle|null $io;
 
+    /** @var DTOExporter $exporter DTO exporter */
+    private DTOExporter $exporter;
+
     /**
      * Constructor.
      *
      * @param DTOExporter $exporter
      */
     public function __construct(
-        private DTOExporter $exporter,
+        DTOExporter $exporter,
     )
     {
         parent::__construct(null);

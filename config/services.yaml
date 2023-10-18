@@ -1,0 +1,28 @@
+services:
+  # main services
+  owlnext_fr.dto_exporter.service.dto_exporter:
+    class: OwlnextFr\DtoExport\Service\DTOExporter
+    arguments:
+      - !tagged_iterator { tag: app.exportable_dto }
+      - '@twig'
+
+  # languages helper
+  owlnext_fr.dto_exporter.service.language.dart:
+    class: OwlnextFr\DtoExport\Service\languages\dart\DartLanguageUtils
+
+  owlnext_fr.dto_exporter.service.language.typescript:
+    class: OwlnextFr\DtoExport\Service\languages\dart\TypeScriptLanguageUtils
+
+  # twig extensions
+  owlnext_fr.dto_exporter.twig.extension.app_extension:
+      class: OwlnextFr\DtoExport\Twig\AppExtension
+      tags:
+      - { name: twig.extension }
+
+  # commands
+  owlnext_fr.dto_exporter.command.dto_export:
+    class: OwlnextFr\DtoExport\Command\DTOExportCommand
+    arguments:
+      - '@owlnext_fr.dto_exporter.service.dto_exporter'
+    tags:
+      - { name: 'console.command', command: 'dto:export' }

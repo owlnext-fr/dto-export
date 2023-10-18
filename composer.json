@@ -4,17 +4,17 @@
     "type": "library",
     "minimum-stability": "stable",
     "license": "MIT",
+    "version": "1.0.0",
     "authors": [
         {
             "name": "Adrien Gras",
             "email": "agr@owlnext.fr"
         }
     ],
-    "version": "0.0.4",
     "require": {
         "php": ">= 8.0",
-        "symfony/twig-bundle": "^6.3",
-        "symfony/console": "^6.3"
+        "symfony/twig-bundle": "^6.1",
+        "symfony/console": "^6.1"
     },
     "autoload": {
         "psr-4": {

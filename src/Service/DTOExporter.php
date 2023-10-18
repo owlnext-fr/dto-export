@@ -1,6 +1,6 @@
 <?php
 
-namespace OwlnextFr\DtoExport\DTOExport;
+namespace OwlnextFr\DtoExport\Service;
 
 use OwlnextFr\DtoExport\Attribute\ListOf;
 use InvalidArgumentException;
@@ -11,6 +11,7 @@ use ReflectionNamedType;
 use ReflectionProperty;
 use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\String\UnicodeString;
 use Twig\Environment;
 use Twig\Error\LoaderError;
@@ -33,7 +34,7 @@ class DTOExporter
         'dart'
     ];
 
-    public function __construct(#[TaggedIterator('app.exportable_dto')] $iterator, Environment $renderer)
+    public function __construct(iterable $iterator, Environment $renderer)
     {
         $this->storage = [];
 
@@ -117,7 +118,7 @@ class DTOExporter
 
             $this->getIO()->writeln(sprintf("[%s/%s] %s", ++$step, $totalStep, sprintf("Generating %s", $classPath)));
 
-            $rendered = $this->renderer->render(sprintf('DTOExport\\ts\\%s.ts.twig', $m['dto_type']), [
+            $rendered = $this->renderer->render(sprintf('@owlnext_fr.dto_export/ts/%s.ts.twig', $m['dto_type']), [
                 'metadata' => $m,
                 'options' => $options
             ]);
@@ -178,7 +179,7 @@ class DTOExporter
 
             $this->getIO()->writeln(sprintf("[%s/%s] %s", ++$step, $totalStep, sprintf("Generating %s", $classPath)));
 
-            $rendered = $this->renderer->render(sprintf('DTOExport\\dart\\%s.dart.twig', $m['dto_type']), [
+            $rendered = $this->renderer->render(sprintf('@owlnext_fr.dto_export/dart/%s.dart.twig', $m['dto_type']), [
                 'metadata' => $m,
                 'options' => $options
             ]);
