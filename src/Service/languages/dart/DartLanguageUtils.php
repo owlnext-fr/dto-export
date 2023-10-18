@@ -36,7 +36,9 @@ class DartLanguageUtils implements RuntimeExtensionInterface
      */
     public static function filterType(string $type, array $fieldMetadata = []): string
     {
-        if ('string' === $type) {
+        if(true === is_object($type) && true === str_starts_with($type, 'App\\Entity')) {
+            $type = 'String';
+        } elseif ('string' === $type) {
             $type = 'String';
         } elseif (true === in_array($type, ['DateTime', 'DateTimeImmutable', 'DateTimeInterface'])) {
             $type = 'DateTime';
