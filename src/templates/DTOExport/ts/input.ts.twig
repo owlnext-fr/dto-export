@@ -1,7 +1,0 @@
-{% include('DTOExport/ts/partials/_imports.ts.twig')|raw %}
-
-type {{ metadata.object_name }} = {
-    {% include('DTOExport/ts/partials/_fields.ts.twig')|raw %}
-}
-
-export default {{ metadata.object_name }};

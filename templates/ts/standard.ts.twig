@@ -1,0 +1,7 @@
+{% include('@owlnext_fr.dto_export/ts/partials/_imports.ts.twig')|raw %}
+
+type {{ metadata.object_name }} = {
+    {% include('@owlnext_fr.dto_export/ts/partials/_fields.ts.twig')|raw %}
+}
+
+export default {{ metadata.object_name }};

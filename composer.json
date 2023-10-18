@@ -10,7 +10,7 @@
             "email": "agr@owlnext.fr"
         }
     ],
-    "version": "0.0.4",
+    "version": "0.0.5",
     "require": {
         "php": ">= 8.0",
         "symfony/twig-bundle": "^6.1",
